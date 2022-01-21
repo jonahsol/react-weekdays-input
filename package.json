@@ -1,6 +1,6 @@
 {
   "name": "@axelmy318/days-of-the-week-input",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A react input that allows users to select days of the week using a user friendly interface",
   "scripts": {
     "rollup": "rollup -c",
