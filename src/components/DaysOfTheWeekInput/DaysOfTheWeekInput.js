@@ -122,7 +122,7 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
 }
 
 DaysOfTheWeekInput.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     showChars: PropTypes.number,
     onChange: PropTypes.func,
     activeDayStyle: PropTypes.object,
