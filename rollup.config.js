@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from 'rollup-plugin-babel'
+import postcss from 'rollup-plugin-postcss'
 
 const packageJson = require("./package.json")
 
@@ -25,11 +26,13 @@ export default [
                 plugins: ['transform-class-properties']
             }),
             commonjs(),
+            postcss(),
         ],
     },
     {
         input: "dist/esm/index.js",
         output: [{ file: "dist/index.js", format: 'esm' }],
-        plugins: []
+        plugins: [],
+        external: [/\.css$/],
     }
 ]
