@@ -44,8 +44,8 @@ export default [
     {
         input: "dist/esm/index.js",
         output: [
-          { dir: 'esm', format: 'esm', sourcemap: true },
-          { dir: 'cjs', format: 'cjs', exports: 'named', sourcemap: true },
+          { dir: 'dist/esm', format: 'esm', sourcemap: true },
+          { dir: 'dist/cjs', format: 'cjs', exports: 'named', sourcemap: true },
         ],
         plugins: [],
         external: [/\.css$/],

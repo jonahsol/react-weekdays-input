@@ -46,6 +46,15 @@ const Example = () => {
                 dayStyle={{
                     border: '2px dotted black',
                 }}
+                forcedState={{
+                    0: 'none',
+                    1: 'none',
+                    2: 'active',
+                    3: 'inactive',
+                    4: 'none',
+                    5: 'none',
+                    6: 'none'
+                }}
             />
         </>
     )
@@ -66,4 +75,5 @@ export default Example
 | inactiveDayStyle | string |  | The CSS styling to apply to inactive days |
 | inputStyle | object |  | The CSS styling of the whole input |
 | dayStyle | object |  | The CSS styling used for each days |
+| forcedState | object |  | Force certain days to be active or inactive. See examples above |
 
