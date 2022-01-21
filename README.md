@@ -16,35 +16,37 @@ const Example = () => {
     const [days, setDays] = useState('0010010') //Wednesday and saturday active
 
     return (
-        //Using default styling and props
-        <DaysOfTheWeekInput
-            value={days}
-            onChange={(value) => setDays(value)}
-        />
+        <>
+            {/*Using default styling and props*/}
+            <DaysOfTheWeekInput
+                value={days}
+                onChange={(value) => setDays(value)}
+            />
 
-        //Using custom props
-        <DaysOfTheWeekInput
-            value={days}
-            onChange={(value) => setDays(value)}
-            days={[
-                'monday',
-                'tuesday',
-                'wednesday',
-                'thursday',
-                'friday',
-                'saturday',
-                'sunday'
-            ]}        
-            showChars={2} //mo, tu, we, th, fr, sa, su
-            activeColor='#ffaaaa'
-            inactiveColor='#101010'
-            inputStyle={{
-                margin: '10px',
-            }}
-            dayStyle={{
-                border: '2px dotted black',
-            }}
-        />
+            {/*Using custom props*/}
+            <DaysOfTheWeekInput
+                value={days}
+                onChange={(value) => setDays(value)}
+                days={[
+                    'monday',
+                    'tuesday',
+                    'wednesday',
+                    'thursday',
+                    'friday',
+                    'saturday',
+                    'sunday'
+                ]}        
+                showChars={2} //mo, tu, we, th, fr, sa, su
+                activeColor='#ffaaaa'
+                inactiveColor='#101010'
+                inputStyle={{
+                    margin: '10px',
+                }}
+                dayStyle={{
+                    border: '2px dotted black',
+                }}
+            />
+        </>
     )
 }
 
