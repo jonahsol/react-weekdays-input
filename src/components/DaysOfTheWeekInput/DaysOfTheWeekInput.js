@@ -10,7 +10,9 @@ import './DaysOfTheWeekInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeColor, inactiveColor }) => {
+const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle }) => {
+    const isString = typeof value === typeof ""
+
     const styles = {
         input: {
             display: "inline-flex",
@@ -20,19 +22,22 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
             padding: "5px",
         },
         inactive: {
-            backgroundColor: inactiveColor
+            ...inactiveDayStyle
         },
         active: {
-            backgroundColor: activeColor
+            ...activeDayStyle
         }
     }
 
-    if(inputStyle !== null)
-        styles.input = inputStyle
+    if(inputStyle !== null){
+        styles.input = {...inputStyle, display: 'inline-flex'}
+    }
     if(dayStyle !== null)
         styles.day = dayStyle
 
     const validateValue = (v) => {
+        if(!isString) 
+            return v.slice(0, 7)
         return v.slice(0, 7).split('')
     }
 
@@ -41,9 +46,20 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
     const selectDay = (e, index) => {
         e.preventDefault()
         let newDaysOfWeek = daysOfWeek
-        newDaysOfWeek[index] = newDaysOfWeek[index] === '0' ? '1' : '0'
-        onChange(newDaysOfWeek.join(''))
+        if(isString){
+            newDaysOfWeek[index] = newDaysOfWeek[index] === '0' ? '1' : '0'
+            onChange(newDaysOfWeek.join(''))
+        } else {
+            newDaysOfWeek[index] = newDaysOfWeek[index] === 0 ? 1 : 0
+            onChange(newDaysOfWeek)
+        }
         setDaysOfWeek([...newDaysOfWeek])
+    }
+
+    const isDayActive = index => {
+        if(!isString && daysOfWeek[index] === 1)
+            console.log(index, daysOfWeek[index],'dAY ACTIVE', daysOfWeek)
+        return isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1
     }
 
     return (
@@ -51,16 +67,20 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
             <span className='day-of-week-input' style={styles.input}>
                 {
                     daysOfWeek.map((day, index) => {
-                        let dayStyle = day === '0' ? {...styles.day, ...styles.inactive} :  {...styles.day, ...styles.active}
+                        let dayStyle = isDayActive(index) ? {...styles.day, ...styles.active} :  {...styles.day, ...styles.inactive}
+                        let className = 'day-of-week-selector clickable'
+
+                        className += isDayActive(index) ? ' selected' : ''
+
                         return (
-                        <div 
-                            key={index}
-                            style={dayStyle} 
-                            className={day === '0' ? 'day-of-week-selector clickable' : 'day-of-week-selector selected clickable'}
-                            onClick={(e) => selectDay(e, index)}
-                        >
-                                {days[index].slice(0, showChars)}
-                        </div>
+                            <div 
+                                key={index}
+                                style={dayStyle} 
+                                className={className}
+                                onClick={(e) => selectDay(e, index)}
+                            >
+                                    {days[index].slice(0, showChars)}
+                            </div>
                         )
                     })
                 }
@@ -92,8 +112,12 @@ DaysOfTheWeekInput.defaultProps = {
         'saturday',
         'sunday',
     ],
-    activeColor: 'skyblue',
-    inactiveColor: 'transparent',
+    activeDayStyle: {
+        backgroundColor: 'skyblue'
+    },
+    inactiveDayStyle: {
+        backgroundColor: 'transparent'
+    },
     inputStyle: null,
     dayStyle: null
 }

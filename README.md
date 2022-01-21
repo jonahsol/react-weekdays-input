@@ -57,12 +57,12 @@ export default Example
 
 | Properties | type | default | description |
 |--|--|--|--|
-| value | string | "0000000" | A string representing the active days of the week. 0 being inactive, 1 being active. |
+| value | string/array(int) | "0000000" | A string or an array of 7 integers representing the active days of the week. 0 being inactive, 1 being active. |
 | showChars | int | 2 | The numbers of chars to show for the days names. Ex: Monday=Mo |
 | onChange | function | | The function that will be called when the user clicks on a day |
 | days | array | ['monday','tuesday','wednesday'... | The array defining the name of the days |
-| activeColor | string | 'skyblue' | The background color of active days |
-| inactiveColor | string | 'transparent' | The background color of inactive days |
+| activeDayStyle | string |  | The CSS styling to apply to active days |
+| inactiveDayStyle | string |  | The CSS styling to apply to inactive days |
 | inputStyle | object |  | The CSS styling of the whole input |
 | dayStyle | object |  | The CSS styling used for each days |
 
