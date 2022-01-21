@@ -4,7 +4,7 @@
 ## Description
 A highly customizable and easy to use react input that allows users to select days of the week with a user friendly interface
 
-![Example](https://i.imgur.com/7JxIvSY.png)
+![Example](https://i.imgur.com/ifSUdUZ.png)
 
 ## Usage
 
@@ -38,13 +38,19 @@ const Example = () => {
                     'sunday'
                 ]}        
                 showChars={2} //mo, tu, we, th, fr, sa, su
-                activeColor='#ffaaaa'
-                inactiveColor='#101010'
-                inputStyle={{
-                    margin: '10px',
+                activeDayStyle={{
+                    backgroundColor: 'pink',
+                    color: '#000'
+                }}
+                inactiveDayStyle={{
+                    backgroundColor: '#cececec',
+                    color: 'white'
                 }}
                 dayStyle={{
                     border: '2px dotted black',
+                }}
+                inputStyle={{
+                    margin: '10px',
                 }}
                 forcedState={{
                     0: 'none',
