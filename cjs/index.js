@@ -34,6 +34,16 @@ function _objectSpread2(target) {
   return target;
 }
 
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
+}
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -1275,8 +1285,12 @@ var DaysOfTheWeekInput = function DaysOfTheWeekInput(_ref) {
       inputStyle = _ref.inputStyle,
       dayStyle = _ref.dayStyle,
       days = _ref.days,
-      activeColor = _ref.activeColor,
-      inactiveColor = _ref.inactiveColor;
+      activeDayStyle = _ref.activeDayStyle,
+      inactiveDayStyle = _ref.inactiveDayStyle,
+      forcedState = _ref.forcedState;
+
+  var isString = _typeof(value) === _typeof("");
+
   var styles = {
     input: {
       display: "inline-flex"
@@ -1285,18 +1299,40 @@ var DaysOfTheWeekInput = function DaysOfTheWeekInput(_ref) {
       border: "1px grey solid",
       padding: "5px"
     },
-    inactive: {
-      backgroundColor: inactiveColor
-    },
-    active: {
-      backgroundColor: activeColor
-    }
+    inactive: _objectSpread2({}, inactiveDayStyle),
+    active: _objectSpread2({}, activeDayStyle)
   };
-  if (inputStyle !== null) styles.input = inputStyle;
+
+  if (inputStyle !== null) {
+    styles.input = _objectSpread2(_objectSpread2({}, inputStyle), {}, {
+      display: 'inline-flex'
+    });
+  }
+
   if (dayStyle !== null) styles.day = dayStyle;
 
+  var isDayActive = function isDayActive(index) {
+    return isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1;
+  };
+
   var validateValue = function validateValue(v) {
-    return v.slice(0, 7).split('');
+    var newValue = Object.keys(forcedState).map(function (index) {
+      switch (forcedState[index]) {
+        case 'none':
+          return v[index];
+
+        case 'active':
+          return isString ? '1' : 1;
+
+        case 'inactive':
+          return isString ? '0' : 0;
+
+        default:
+          return v[index];
+      }
+    });
+    if (!isString) return newValue.slice(0, 7);
+    return newValue.join().slice(0, 7).split('');
   };
 
   var _useState = React.useState(validateValue(value)),
@@ -1307,8 +1343,15 @@ var DaysOfTheWeekInput = function DaysOfTheWeekInput(_ref) {
   var selectDay = function selectDay(e, index) {
     e.preventDefault();
     var newDaysOfWeek = daysOfWeek;
-    newDaysOfWeek[index] = newDaysOfWeek[index] === '0' ? '1' : '0';
-    onChange(newDaysOfWeek.join(''));
+
+    if (isString) {
+      newDaysOfWeek[index] = newDaysOfWeek[index] === '0' ? '1' : '0';
+      onChange(newDaysOfWeek.join(''));
+    } else {
+      newDaysOfWeek[index] = newDaysOfWeek[index] === 0 ? 1 : 0;
+      onChange(newDaysOfWeek);
+    }
+
     setDaysOfWeek(_toConsumableArray(newDaysOfWeek));
   };
 
@@ -1316,11 +1359,13 @@ var DaysOfTheWeekInput = function DaysOfTheWeekInput(_ref) {
     className: "day-of-week-input",
     style: styles.input
   }, daysOfWeek.map(function (day, index) {
-    var dayStyle = day === '0' ? _objectSpread2(_objectSpread2({}, styles.day), styles.inactive) : _objectSpread2(_objectSpread2({}, styles.day), styles.active);
+    var dayStyle = isDayActive(index) ? _objectSpread2(_objectSpread2({}, styles.day), styles.active) : _objectSpread2(_objectSpread2({}, styles.day), styles.inactive);
+    var className = 'day-of-week-selector clickable';
+    className += isDayActive(index) ? ' selected' : '';
     return /*#__PURE__*/React__default["default"].createElement("div", {
       key: index,
       style: dayStyle,
-      className: day === '0' ? 'day-of-week-selector clickable' : 'day-of-week-selector selected clickable',
+      className: className,
       onClick: function onClick(e) {
         return selectDay(e, index);
       }
@@ -1342,8 +1387,21 @@ DaysOfTheWeekInput.defaultProps = {
   showChars: 2,
   onChange: function onChange(v) {},
   days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
-  activeColor: 'skyblue',
-  inactiveColor: 'transparent',
+  forcedState: {
+    0: 'none',
+    1: 'none',
+    2: 'none',
+    3: 'none',
+    4: 'none',
+    5: 'none',
+    6: 'none'
+  },
+  activeDayStyle: {
+    backgroundColor: 'skyblue'
+  },
+  inactiveDayStyle: {
+    backgroundColor: 'transparent'
+  },
   inputStyle: null,
   dayStyle: null
 };

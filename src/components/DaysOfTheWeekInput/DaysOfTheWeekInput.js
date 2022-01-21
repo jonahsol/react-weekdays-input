@@ -35,10 +35,11 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
     if(dayStyle !== null)
     styles.day = dayStyle
     
-    const isDayActive = index => isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1
+    const isDayActive   = index => isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1
+    const isStateForced = index => forcedState[index] !== 'none'
 
-    const validateValue = (v) => {
-        let newValue = Object.keys(forcedState).map(index => {
+    const applyForcedStates = (v) => {
+        return Object.keys(forcedState).map(index => {
             switch(forcedState[index]){
                 case 'none':
                     return v[index]
@@ -50,10 +51,14 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
                     return v[index]
             }
         })
+    }
+
+    const validateValue = (v) => {
+        let newValue = applyForcedStates(v)
         
         if(!isString) 
             return newValue.slice(0, 7)
-        return newValue.join().slice(0, 7).split('')
+        return newValue.slice(0, 7)
     }
 
     const [daysOfWeek, setDaysOfWeek] = useState(validateValue(value))
@@ -63,12 +68,12 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
         let newDaysOfWeek = daysOfWeek
         if(isString){
             newDaysOfWeek[index] = newDaysOfWeek[index] === '0' ? '1' : '0'
-            onChange(newDaysOfWeek.join(''))
+            onChange(applyForcedStates(newDaysOfWeek).join(''))
         } else {
             newDaysOfWeek[index] = newDaysOfWeek[index] === 0 ? 1 : 0
-            onChange(newDaysOfWeek)
+            onChange(applyForcedStates(newDaysOfWeek))
         }
-        setDaysOfWeek([...newDaysOfWeek])
+        setDaysOfWeek(applyForcedStates([...newDaysOfWeek]))
     }
 
     return (
@@ -77,9 +82,10 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
                 {
                     daysOfWeek.map((day, index) => {
                         let dayStyle = isDayActive(index) ? {...styles.day, ...styles.active} :  {...styles.day, ...styles.inactive}
-                        let className = 'day-of-week-selector clickable'
+                        let className = 'day-of-week-selector'
 
                         className += isDayActive(index) ? ' selected' : ''
+                        className += isStateForced(index) ? ' disabled' : ' clickable'
 
                         return (
                             <div 
@@ -102,10 +108,11 @@ DaysOfTheWeekInput.propTypes = {
     value: PropTypes.string,
     showChars: PropTypes.number,
     onChange: PropTypes.func,
-    activeColor: PropTypes.string,
-    inactiveColor: PropTypes.string,
+    activeDayStyle: PropTypes.object,
+    inactiveDayStyle: PropTypes.object,
     inputStyle: PropTypes.object,
     dayStyle: PropTypes.object,
+    forcedState: PropTypes.object
 }
 
 DaysOfTheWeekInput.defaultProps = {

@@ -12,7 +12,7 @@ export default {
 
 const Template = (args) => {
     const [days, setDays] = useState('0001000')
-    const [daysObject, setDaysObject] = useState([0, 1, 0, 0, 0, 1, 1])
+    const [daysObject, setDaysObject] = useState([0, 1, 0, 0, 0, 0, 1])
     return (<>
         <span>String value</span>
         <DaysOfTheWeekInput value={days} onChange={(value) => setDays(value)} {...args} />

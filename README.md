@@ -10,7 +10,7 @@ This is a react input that allows the users to select days of the week with a si
 
 ```javascript
 import React, { useState } from 'react'
-import DaysOfTheWeekInput from 'days-of-the-week-input'
+import { DaysOfTheWeekInput } from '@axelmy318/days-of-the-week-input'
 
 const Example = () => {
     const [daysAsString, setDaysAsString] = useState('0010010') //Wednesday and saturday active
