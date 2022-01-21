@@ -1,6 +1,6 @@
 {
   "name": "@axelmy318/days-of-the-week-input",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "A react input that allows users to select days of the week using a user friendly interface",
   "scripts": {
     "rollup": "rollup -c",
@@ -22,11 +22,14 @@
     "babel": "^6.23.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "react": "^17.0.2",
     "rollup": "^2.65.0",
     "rollup-plugin-babel": "^4.4.0",
-    "react-dom": "^17.0.2",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

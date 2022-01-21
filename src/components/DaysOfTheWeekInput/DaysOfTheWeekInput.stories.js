@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import DaysOfTheWeekInput from './DaysOfTheWeekInput';
 
@@ -10,7 +10,11 @@ export default {
   },
 };
 
-const Template = (args) => <DaysOfTheWeekInput {...args} />;
+const Template = (args) => {
+    const [days, setDays] = useState('0001000')
+    console.log(days)
+    return (<DaysOfTheWeekInput value={days} onChange={(value) => setDays(value)} {...args} />)
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
