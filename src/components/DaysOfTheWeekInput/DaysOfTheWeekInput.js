@@ -111,7 +111,7 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
                                 className={className}
                                 onClick={(e) => selectDay(e, index)}
                             >
-                                    {applyCase(days[index].slice(0, showChars))}
+                                    {applyCase(showChars === null ? days[index] : days[index].slice(0, showChars))}
                             </div>
                         )
                     })
@@ -135,7 +135,7 @@ DaysOfTheWeekInput.propTypes = {
 
 DaysOfTheWeekInput.defaultProps = {
     value: '0000000',
-    showChars: 2,
+    showChars: null,
     onChange: function(v){},
     days: [
         'monday', 

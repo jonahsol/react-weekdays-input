@@ -69,7 +69,7 @@ export default Example
 | Properties | type | default | description |
 |--|--|--|--|
 | value | string/array(int) | "0000000" | A string or an array of 7 integers representing the active days of the week. 0 being inactive, 1 being active. |
-| showChars | int | 2 | The numbers of chars to show for the days names. Ex: Monday=Mo |
+| showChars | int | null | The numbers of chars to show for the days names. Ex: Monday=Mo. null will display the entire word |
 | onChange | function | | The function that will be called when the user clicks on a day |
 | days | array | ['monday','tuesday','wednesday'... | The array defining the name of the days |
 | activeDayStyle | string |  | The CSS styling to apply to active days |
