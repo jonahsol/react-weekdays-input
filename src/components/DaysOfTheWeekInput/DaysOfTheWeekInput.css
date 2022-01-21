@@ -1,16 +1,3 @@
 .clickable {
     cursor: pointer;
 }
-
-.day-of-week-input {
-    display: inline-flex;
-}
-
-.day-of-week-selector {
-    border: 1px grey solid;
-    padding: 5px;
-}
-
-.day-of-week-selector.selected {
-    background-color: skyblue;
-}
