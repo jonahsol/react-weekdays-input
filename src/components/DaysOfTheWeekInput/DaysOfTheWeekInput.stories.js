@@ -6,7 +6,7 @@ export default {
   title: 'DaysOfTheWeekInput/DaysOfTheWeekInput',
   component: DaysOfTheWeekInput,
   argTypes: {
-      step: { control: 'number' }
+    showChars: { control: 'number' }
   },
 };
 
@@ -14,7 +14,7 @@ const Template = (args) => <DaysOfTheWeekInput {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    step: 2,
+    showChars: 2,
     days: [
         'monday', 
         'thuesday',
@@ -28,7 +28,7 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-    step: 3,
+    showChars: 3,
     days: [
         'lundi',
         'mardi',

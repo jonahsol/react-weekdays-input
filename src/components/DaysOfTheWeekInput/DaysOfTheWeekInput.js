@@ -10,7 +10,7 @@ import './DaysOfTheWeekInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const DaysOfTheWeekInput = ({ value, step, onChange, inputStyle, dayStyle, days, activeColor, inactiveColor }) => {
+const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeColor, inactiveColor }) => {
     const styles = {
         input: {
             display: "inline-flex",
@@ -59,7 +59,7 @@ const DaysOfTheWeekInput = ({ value, step, onChange, inputStyle, dayStyle, days,
                             className={day === '0' ? 'day-of-week-selector clickable' : 'day-of-week-selector selected clickable'}
                             onClick={(e) => selectDay(e, index)}
                         >
-                                {days[index].slice(0, step)}
+                                {days[index].slice(0, showChars)}
                         </div>
                         )
                     })
@@ -71,7 +71,7 @@ const DaysOfTheWeekInput = ({ value, step, onChange, inputStyle, dayStyle, days,
 
 DaysOfTheWeekInput.propTypes = {
     value: PropTypes.string,
-    step: PropTypes.number,
+    showChars: PropTypes.number,
     onChange: PropTypes.func,
     activeColor: PropTypes.string,
     inactiveColor: PropTypes.string,
@@ -81,11 +81,11 @@ DaysOfTheWeekInput.propTypes = {
 
 DaysOfTheWeekInput.defaultProps = {
     value: '0000000',
-    step: 2,
+    showChars: 2,
     onChange: function(v){},
     days: [
         'monday', 
-        'thuesday',
+        'tuesday',
         'wednesday',
         'thursday',
         'friday',
