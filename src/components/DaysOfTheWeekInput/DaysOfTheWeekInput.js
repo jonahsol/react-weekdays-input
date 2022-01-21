@@ -54,10 +54,15 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
     }
 
     const validateValue = (v) => {
+        console.log(v)
         let newValue = applyForcedStates(v)
         
-        if(!isString) 
-            return newValue.slice(0, 7)
+        let toCompare = isString ? newValue.join('') : v
+        
+        if(toCompare !== v){
+            onChange(isString ? applyForcedStates(newValue.slice(0, 7)).join('') : applyForcedStates(newValue.slice(0, 7)))
+        }
+
         return newValue.slice(0, 7)
     }
 
