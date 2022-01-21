@@ -10,7 +10,7 @@ import './DaysOfTheWeekInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle }) => {
+const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState }) => {
     const isString = typeof value === typeof ""
 
     const styles = {
@@ -28,17 +28,32 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
             ...activeDayStyle
         }
     }
-
+    
     if(inputStyle !== null){
         styles.input = {...inputStyle, display: 'inline-flex'}
     }
     if(dayStyle !== null)
-        styles.day = dayStyle
+    styles.day = dayStyle
+    
+    const isDayActive = index => isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1
 
     const validateValue = (v) => {
+        let newValue = Object.keys(forcedState).map(index => {
+            switch(forcedState[index]){
+                case 'none':
+                    return v[index]
+                case 'active':
+                    return isString ? '1' : 1
+                case 'inactive':
+                    return isString ? '0' : 0
+                default:
+                    return v[index]
+            }
+        })
+        
         if(!isString) 
-            return v.slice(0, 7)
-        return v.slice(0, 7).split('')
+            return newValue.slice(0, 7)
+        return newValue.join().slice(0, 7).split('')
     }
 
     const [daysOfWeek, setDaysOfWeek] = useState(validateValue(value))
@@ -54,12 +69,6 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
             onChange(newDaysOfWeek)
         }
         setDaysOfWeek([...newDaysOfWeek])
-    }
-
-    const isDayActive = index => {
-        if(!isString && daysOfWeek[index] === 1)
-            console.log(index, daysOfWeek[index],'dAY ACTIVE', daysOfWeek)
-        return isString ? daysOfWeek[index] === '1' : daysOfWeek[index] === 1
     }
 
     return (
@@ -112,6 +121,15 @@ DaysOfTheWeekInput.defaultProps = {
         'saturday',
         'sunday',
     ],
+    forcedState: {
+        0: 'none',
+        1: 'none',
+        2: 'none',
+        3: 'none',
+        4: 'none',
+        5: 'none',
+        6: 'none'
+    },
     activeDayStyle: {
         backgroundColor: 'skyblue'
     },

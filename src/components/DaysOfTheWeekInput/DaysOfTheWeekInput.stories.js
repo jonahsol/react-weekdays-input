@@ -18,6 +18,8 @@ const Template = (args) => {
         <DaysOfTheWeekInput value={days} onChange={(value) => setDays(value)} {...args} />
         <span>Object value</span>
         <DaysOfTheWeekInput value={daysObject} onChange={(value) => setDays(setDaysObject)} {...args} />
+
+        {daysObject.map(value => <span>{value}</span>)}
     </>)
 };
 
@@ -32,7 +34,16 @@ Primary.args = {
         'friday',
         'saturday',
         'sunday',
-    ]
+    ],
+    forcedState: {
+        0: 'none',
+        1: 'none',
+        2: 'active',
+        3: 'inactive',
+        4: 'none',
+        5: 'none',
+        6: 'none'
+    }
 };
 
 export const Secondary = Template.bind({});

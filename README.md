@@ -13,20 +13,21 @@ import React, { useState } from 'react'
 import DaysOfTheWeekInput from 'days-of-the-week-input'
 
 const Example = () => {
-    const [days, setDays] = useState('0010010') //Wednesday and saturday active
+    const [daysAsString, setDaysAsString] = useState('0010010') //Wednesday and saturday active
+    const [daysAsObject, setDaysAsObject] = useState([0, 0, 1, 0, 0, 1, 0]) //Wednesday and saturday active
 
     return (
         <>
             {/*Using default styling and props*/}
             <DaysOfTheWeekInput
-                value={days}
-                onChange={(value) => setDays(value)}
+                value={daysAsString}
+                onChange={(value) => setDaysAsString(value)}
             />
 
             {/*Using custom props*/}
             <DaysOfTheWeekInput
-                value={days}
-                onChange={(value) => setDays(value)}
+                value={daysAsObject}
+                onChange={(value) => setDaysAsObject(value)}
                 days={[
                     'monday',
                     'tuesday',
