@@ -55,6 +55,7 @@ const Example = () => {
                     5: 'none',
                     6: 'none'
                 }}
+                textCase={'firstToUpper'} //Mo, Tu, We, Th, Fr, Sa, Su
             />
         </>
     )
@@ -76,4 +77,5 @@ export default Example
 | inputStyle | object |  | The CSS styling of the whole input |
 | dayStyle | object |  | The CSS styling used for each days |
 | forcedState | object |  | Force certain days to be active or inactive. See examples above |
+| textCase | string | null | Defines the case of the text. Available: firstToUpper (Monday), toUpper (MONDAY), toLower (monday) |
 

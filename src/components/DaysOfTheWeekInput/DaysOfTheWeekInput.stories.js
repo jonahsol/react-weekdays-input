@@ -43,7 +43,8 @@ Primary.args = {
         4: 'none',
         5: 'none',
         6: 'none'
-    }
+    },
+    textCase: 'firstToUpper'
 };
 
 export const Secondary = Template.bind({});

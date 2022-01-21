@@ -10,7 +10,7 @@ import './DaysOfTheWeekInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState }) => {
+const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase }) => {
     const isString = typeof value === typeof ""
 
     const styles = {
@@ -80,6 +80,19 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
         setDaysOfWeek(applyForcedStates([...newDaysOfWeek]))
     }
 
+    const applyCase = text => {
+        switch(textCase) {
+            case 'firstToUpper':
+                return text.charAt(0).toUpperCase() + text.slice(1);
+            case 'toUpper':
+                return text.toUpperCase()
+            case 'toLower':
+                return text.toLowerCase()
+            default:
+                return text
+        }
+    }
+
     return (
         <div>
             <span className='day-of-week-input' style={styles.input}>
@@ -98,7 +111,7 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
                                 className={className}
                                 onClick={(e) => selectDay(e, index)}
                             >
-                                    {days[index].slice(0, showChars)}
+                                    {applyCase(days[index].slice(0, showChars))}
                             </div>
                         )
                     })
@@ -116,7 +129,8 @@ DaysOfTheWeekInput.propTypes = {
     inactiveDayStyle: PropTypes.object,
     inputStyle: PropTypes.object,
     dayStyle: PropTypes.object,
-    forcedState: PropTypes.object
+    forcedState: PropTypes.object,
+    textCase: PropTypes.string
 }
 
 DaysOfTheWeekInput.defaultProps = {
@@ -148,7 +162,8 @@ DaysOfTheWeekInput.defaultProps = {
         backgroundColor: 'transparent'
     },
     inputStyle: null,
-    dayStyle: null
+    dayStyle: null,
+    textCase: null,
 }
 
 export default DaysOfTheWeekInput
