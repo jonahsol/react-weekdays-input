@@ -1,14 +1,16 @@
-# Days of the week input
+# react-weekdays-input 👋
 ## Description
 A highly customizable and easy to use react input that allows users to select days of the week with a user friendly interface
 
 ![Example](https://i.imgur.com/ifSUdUZ.png)
 
-## Installation
+## Installation 
 `npm i days-of-the-week-input`
 
+## Demo 👀
+[https://axelmy-projects-showcase.firebaseapp.com/react-weekdays-input](https://axelmy-projects-showcase.firebaseapp.com/react-weekdays-input)
 
-## Usage
+## Usage 💻
 
 ```javascript
 import React, { useState } from 'react'
