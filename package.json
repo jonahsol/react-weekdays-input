@@ -10,7 +10,8 @@
     "publish_npmjs": "npmrc axelmy_npmjs && npm run rollup && npm publish"
   },
   "author": {
-    "name": "Axel Milliery"
+    "name": "Axel Milliery",
+    "email": "a.milliery@icloud.com"
   },
   "license": "MIT",
   "devDependencies": {
@@ -49,5 +50,17 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/axelmy318/days-of-the-week-input.git"
-  }
+  },
+  "keywords": [
+    "npm",
+    "npmjs",
+    "git",
+    "github",
+    "javascript",
+    "react",
+    "reactjs",
+    "input",
+    "time",
+    "date"
+  ]
 }
