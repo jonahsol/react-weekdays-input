@@ -1,6 +1,6 @@
 {
   "name": "@axelmy/days-of-the-week-input",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "A react input that allows users to select days of the week using a user friendly interface",
   "scripts": {
     "rollup": "rollup -c",
@@ -12,7 +12,7 @@
   "author": {
     "name": "Axel Milliery"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.10",
     "@babel/preset-env": "^7.16.11",
