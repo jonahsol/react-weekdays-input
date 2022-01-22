@@ -1,11 +1,13 @@
 {
-  "name": "@axelmy318/days-of-the-week-input",
-  "version": "1.2.2",
+  "name": "@axelmy/days-of-the-week-input",
+  "version": "1.2.3",
   "description": "A react input that allows users to select days of the week using a user friendly interface",
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "publish_github": "npmrc axelmy_github && npm run rollup && npm publish",
+    "publish_npmjs": "npmrc axelmy_npmjs && npm run rollup && npm publish"
   },
   "author": {
     "name": "Axel Milliery"
@@ -26,8 +28,8 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "rollup": "^2.65.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-peer-deps-external": "^2.2.4"
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",
@@ -40,5 +42,8 @@
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "npmrc": "^1.1.1"
   }
 }

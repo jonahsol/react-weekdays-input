@@ -1,6 +1,4 @@
 # Days of the week input
-## installation
-`npm i @axelmy318/days-of-the-week-input@latest`
 ## Description
 A highly customizable and easy to use react input that allows users to select days of the week with a user friendly interface
 
