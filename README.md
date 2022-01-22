@@ -8,7 +8,7 @@ A highly customizable and easy to use react input that allows users to select da
 
 ```javascript
 import React, { useState } from 'react'
-import { DaysOfTheWeekInput } from '@axelmy318/days-of-the-week-input'
+import { DaysOfTheWeekInput } from '@axelmy/days-of-the-week-input'
 
 const Example = () => {
     const [daysAsString, setDaysAsString] = useState('0010010') //Wednesday and saturday active
