@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import DaysOfTheWeekInput from './DaysOfTheWeekInput';
+import WeekdaysInput from './WeekdaysInput';
 
 export default {
-  title: 'DaysOfTheWeekInput/DaysOfTheWeekInput',
-  component: DaysOfTheWeekInput,
+  title: 'WeekdaysInput/WeekdaysInput',
+  component: WeekdaysInput,
   argTypes: {
     showChars: { control: 'number' }
   },
@@ -15,9 +15,9 @@ const Template = (args) => {
     const [daysObject, setDaysObject] = useState([0, 1, 0, 0, 0, 0, 1])
     return (<>
         <span>String value</span>
-        <DaysOfTheWeekInput value={days} onChange={(value) => setDays(value)} {...args} />
+        <WeekdaysInput value={days} onChange={(value) => setDays(value)} {...args} />
         <span>Object value</span>
-        <DaysOfTheWeekInput value={daysObject} onChange={(value) => setDays(setDaysObject)} {...args} />
+        <WeekdaysInput value={daysObject} onChange={(value) => setDays(setDaysObject)} {...args} />
 
         {daysObject.map(value => <span>{value}</span>)}
     </>)

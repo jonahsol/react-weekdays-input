@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './DaysOfTheWeekInput.css'
+import './WeekdaysInput.css'
 
 /**
  * 
@@ -10,7 +10,7 @@ import './DaysOfTheWeekInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase }) => {
+const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase }) => {
     const isString = typeof value === typeof ""
 
     const styles = {
@@ -121,7 +121,7 @@ const DaysOfTheWeekInput = ({ value, showChars, onChange, inputStyle, dayStyle, 
     )
 }
 
-DaysOfTheWeekInput.propTypes = {
+WeekdaysInput.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     showChars: PropTypes.number,
     onChange: PropTypes.func,
@@ -133,7 +133,7 @@ DaysOfTheWeekInput.propTypes = {
     textCase: PropTypes.string
 }
 
-DaysOfTheWeekInput.defaultProps = {
+WeekdaysInput.defaultProps = {
     value: '0000000',
     showChars: null,
     onChange: function(v){},
@@ -166,4 +166,4 @@ DaysOfTheWeekInput.defaultProps = {
     textCase: null,
 }
 
-export default DaysOfTheWeekInput
+export default WeekdaysInput
