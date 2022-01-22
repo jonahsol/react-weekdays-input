@@ -1,6 +1,6 @@
 {
-  "name": "days-of-the-week-input",
-  "version": "1.2.12",
+  "name": "react-weekdays-input",
+  "version": "1.2.15",
   "description": "A highly customizable and easy to use react input that allows users to select days of the week with a user friendly interface",
   "scripts": {
     "rollup": "rollup -c",
@@ -47,7 +47,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/axelmy318/days-of-the-week-input.git"
+    "url": "https://github.com/axelmy318/react-weekdays-input.git"
   },
   "keywords": [
     "npm",
