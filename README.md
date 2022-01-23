@@ -1,5 +1,4 @@
 # react-weekdays-input 👋
-## Description
 A highly customizable and easy to use react input that allows users to select days of the week with a user friendly interface
 
 ![Example](https://i.imgur.com/ifSUdUZ.png)
