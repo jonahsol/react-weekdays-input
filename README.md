@@ -4,7 +4,7 @@ A highly customizable and easy to use react input that allows users to select da
 ![Example](https://i.imgur.com/ifSUdUZ.png)
 
 ## Installation 
-`npm i days-of-the-week-input`
+`npm i react-weekdays-input`
 
 ## Demo 👀
 [https://axelmy-projects-showcase.firebaseapp.com/react-weekdays-input](https://axelmy-projects-showcase.firebaseapp.com/react-weekdays-input)
