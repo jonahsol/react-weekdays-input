@@ -73,7 +73,7 @@ const Example = () => {
 export default Example
 ```
 
-## API
+## API ✔
 
 | Properties | type | default | description |
 |--|--|--|--|
