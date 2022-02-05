@@ -10,7 +10,7 @@ import './WeekdaysInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase }) => {
+const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase, ...rest  }) => {
     const isString = typeof value === typeof ""
 
     const styles = {
@@ -94,7 +94,7 @@ const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days,
     }
 
     return (
-        <div>
+        <div {...rest}>
             <span className='day-of-week-input' style={styles.input}>
                 {
                     daysOfWeek.map((day, index) => {
