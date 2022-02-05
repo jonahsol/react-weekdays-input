@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './WeekdaysInput.css'
 
+const Outer = props => <span {...props} />
+const Weekday = props => <div {...props} />
+
 /**
  * 
  * @param {string} value: a string of 7 digits that can each either be 0 or 1
@@ -10,7 +13,7 @@ import './WeekdaysInput.css'
  * @param {string} onChange: execute the given function passing the new value as a parameter
  * @returns 
  */
-const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase, ...rest  }) => {
+const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days, activeDayStyle, inactiveDayStyle, forcedState, textCase, Outer: OuterProp, Weekday: WeekdayProp  }) => {
     const isString = typeof value === typeof ""
 
     const styles = {
@@ -93,31 +96,49 @@ const WeekdaysInput = ({ value, showChars, onChange, inputStyle, dayStyle, days,
         }
     }
 
+    function getOuterProps() {
+        return {
+            className: 'day-of-week-input',
+            style: styles.input
+        }
+    }
+    function getSelectableProps({
+        index
+    }) {
+        const dayActive = isDayActive(index)
+        const stateForced = isStateForced(index)
+
+        let dayStyle = dayActive ? {...styles.day, ...styles.active} :  {...styles.day, ...styles.inactive}
+        let className = 'day-of-week-selector'
+
+        className += dayActive ? ' selected' : ''
+        className += stateForced ? ' disabled' : ' clickable'
+
+        return {
+            key: index,
+            style: dayStyle,
+            className,
+            onClick: (e) => selectDay(e, index),
+            dayActive,
+            stateForced
+        }
+    }
+
+    const Outer = OuterProp ? OuterProp : Outer
+    const Weekday = WeekdayProp ? WeekdayProp : Weekday
+
     return (
-        <div {...rest}>
-            <span className='day-of-week-input' style={styles.input}>
-                {
-                    daysOfWeek.map((day, index) => {
-                        let dayStyle = isDayActive(index) ? {...styles.day, ...styles.active} :  {...styles.day, ...styles.inactive}
-                        let className = 'day-of-week-selector'
-
-                        className += isDayActive(index) ? ' selected' : ''
-                        className += isStateForced(index) ? ' disabled' : ' clickable'
-
-                        return (
-                            <div 
-                                key={index}
-                                style={dayStyle} 
-                                className={className}
-                                onClick={(e) => selectDay(e, index)}
-                            >
-                                    {applyCase(showChars === null ? days[index] : days[index].slice(0, showChars))}
-                            </div>
-                        )
-                    })
-                }
-            </span>
-        </div>
+        <Outer {...getOuterProps()}>
+            {
+                daysOfWeek.map((_, index) => (
+                    <Weekday
+                        {...getSelectableProps(index)}
+                    >
+                        {applyCase(showChars === null ? days[index] : days[index].slice(0, showChars))}
+                    </Weekday>
+                ))
+            }
+        </Outer>
     )
 }
 
@@ -164,6 +185,8 @@ WeekdaysInput.defaultProps = {
     inputStyle: null,
     dayStyle: null,
     textCase: null,
+    Outer,
+    Weekday
 }
 
 export default WeekdaysInput
